@@ -15,16 +15,22 @@
     nav { background-color: white; margin-bottom: 15px; } 
     .Logo { width: 100px; height: 50px; margin: 15px;}
     h3 { text-align: center; margin: 20px}
-    .video-container { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position:relative; height:0; margin: 20px;}
+    .video-container { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position: relative; height:0; margin: 20px;}
     .video-container iframe { left:0; top:0; height:100%; width:100%; position:absolute; }
     #myCarousel { margin: 20px }
     .title { text-align: center; }
     .heart { font-size: 30px; }
     .nav-link { color: #83c7f8; font-style: italic; font-weight: bolder; padding-top: 42px;}
-    .mapouter { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position:relative; height:0; margin: 20px;}
+    .mapouter { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position: relative; height:0; margin: 20px;}
     .mapouter #gmap_canvas { left:0; top:0; height:100%; width:100%; position:absolute; }
-    .lista { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position:relative; height:0; margin-left: 20px; margin-right: 20px; margin-top: 40px; margin-bottom: 50px; }
+    .lista { overflow:hidden; padding-bottom:56.25%; padding-top: 30px; position: relative; height:0; margin-left: 20px; margin-right: 20px; margin-top: 40px; margin-bottom: 50px; }
     .lista #lista { left:0; top:0; height:100%; width:100%; position:absolute; }
+    .dropdown { width: 100%; text-align: center; }
+    #dropdownMenuButton { margin: 0 auto; background-color: rgb(122, 116, 81); }
+    .dropdown-menu { padding: 8px; }
+    #copy { list-style: none; }
+    .copyLi { margin: 4px; }
+    .copy { border-radius: 10px; }
     footer { background-color: grey; color: #83c7f8; width: 100%; height: 45px; margin-top: 50px; font-weight: bolder; }
     #calendar { color: white; width: 100%; text-align: center; }
     #myBtn { color: #83c7f8; background-color: grey; float: right; height: 45px; border-radius: 12px; }
@@ -120,17 +126,39 @@
 </div>
 
 <div>
-    <h3>Se proprio non riuscissi ad essere dei nostri e volessi dedicarci un pensierino...</h3>
+    <h3 >Se proprio non riuscissi ad essere dei nostri e volessi dedicarci un pensierino...</h3> 
 </div>
 
+<!-- DROPDOWN COPIA -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Copia facilmente i dati
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <ul id="copy">
+                <li class="copyLi">
+                    <input type="text" value="IT79H0103039840000001889109" id="IBAN"> <button class="copy" onclick="copyIban()">Copia IBAN</button>
+                </li class="copyLi">
+                <li>
+                    <input type="text" value="Tecnotravel group srls" id="BENEFICIARIO"> <button class="copy" onclick="copyBeneficiario()">Copia Beneficiario</button>
+                </li>
+                <li class="copyLi">
+                    <input type="text" value="Lista di nozze Carmine e Alessandra" id="CAUSALE"> <button class="copy" onclick="copyCausale()">Copia Causale</button>
+                </li>
+            </ul>
+        </div>
+      </div>
+
+<!-- LISTA NOZZE -->
 <div class="lista">
-<img id="lista" src="https://i.ibb.co/NKSyThR/e97ea7ce-fd69-41c2-92ce-2ef9c5fe6ce7.jpg" alt="LISTA NOZZE VIAGGIO">
+<a href="https://i.ibb.co/NKSyThR/e97ea7ce-fd69-41c2-92ce-2ef9c5fe6ce7.jpg"><img id="lista" src="https://i.ibb.co/NKSyThR/e97ea7ce-fd69-41c2-92ce-2ef9c5fe6ce7.jpg" alt="LISTA NOZZE VIAGGIO"></a>
 </div>
 
 <div>
     <h3>E' richiesta la vostra adesione per tempo anche per evenutali accompagnatori/accompagnatrici</h3>
 </div>
 
+<!-- CALENDAR -->
 <div id="calendar">
   <a class="calendar" target="_blank" href="https://calendar.google.com/event?action=TEMPLATE&tmeid=Mmllc2x0cnA5OXBtMTI0a3BmMWc2a2Y1cWYga2lja2JveGluZ29kQG0&tmsrc=kickboxingod%40gmail.com"><img src="https://www.google.com/calendar/images/ext/gc_button1_it.gif"> AGGIUNGI L'EVENTO AL TUO CALENDARIO!</a>
 </div>
@@ -178,6 +206,8 @@ Powered by KAMINA
   </div>
 
 </div>
+
+<!-- SCRIPT PER I PARTNERS -->
 <script>
 // Get the modal
   var modal = document.getElementById("myModal");
@@ -203,7 +233,48 @@ Powered by KAMINA
     if (event.target == modal) {
       modal.style.display = "none";
     }
-  }</script>
+  }
+  </script>
+
+<!-- SCRIPT PER COPIARE I DATI-->
+  <script>
+    function copyIban() {
+  /* Get the text field */
+  const copyText = document.getElementById("IBAN");
+
+    /* Select the text field */
+    copyText.select(); 
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+     /* Copy the text inside the text field */
+     navigator.clipboard.writeText(copyText.value).then(() => { alert("Copiato il testo: " + copyText.value); })
+      }
+
+      function copyBeneficiario() {
+  /* Get the text field */
+  const copyText = document.getElementById("BENEFICIARIO");
+
+    /* Select the text field */
+    copyText.select(); 
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+     /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value).then(() => { alert("Copiato il testo: " + copyText.value); })
+      }
+
+      function copyCausale() {
+  /* Get the text field */
+  const copyText = document.getElementById("CAUSALE");
+
+    /* Select the text field */
+    copyText.select(); 
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+     /* Copy the text inside the text field */
+     navigator.clipboard.writeText(copyText.value).then(() => { alert("Copiato il testo: " + copyText.value); })
+      }
+
+  </script>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
